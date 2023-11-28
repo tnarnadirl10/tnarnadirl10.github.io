@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Converter</title>
+  <style>
+    body {
+      background-image: url("img_galaxy.jpg");
+      color: white;
+      font-family: 'Times New Roman', Times, serif, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #error {
+      color: red;
+    }
+
+    #question {
+      font-size: 24px;
+    }
+
+    #answer {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function convertNumber() {
+      var inputNumber = document.getElementById('numberInput').value;
+      var fromBase = parseInt(document.getElementById('fromBase').value);
+      var toBase = parseInt(document.getElementById('toBase').value);
+
+      if (isNaN(fromBase) || isNaN(toBase) || isNaN(parseInt(inputNumber, fromBase))) {
+        alert('Error: Invalid input. Please check your input and try again.');
+        return;
+      }
+
+      var result = parseInt(inputNumber, fromBase).toString(toBase);
+      document.getElementById('answer').innerText = 'Result: ' + result;
+
+      // Otomatik geçiş kontrolü
+      if (inputNumber === '10101') {
+        window.location.href = 'page.html';
+      }
+    }
+  </script>
+  <h1>Number Converter</h1>
+  <label for="numberInput">Number:</label>
+  <input type="text" id="numberInput" placeholder="Enter a number", style="height: 30px;"/>
+  <br />
+  <br/>
+  <br/>
+  <label for="fromBase">From Base:</label>
+  <input type="number" id="fromBase" placeholder="Enter the base", style="height: 30px;" />
+  <br />
+  <br/>
+  <br/>
+  <label for="toBase">To Base:</label>
+  <input type="number" id="toBase" placeholder="Enter the base", style="height: 30px;" />
+  <br />
+  <br/>
+  <br/>
+  <button onclick="convertNumber()"; style="height: 50px; width: 90px;;">Submit</button>
+  <button onclick="location.reload()"; style="height: 50px; width: 90px;;">Reset</button>
+
+  <br />
+  <p id="error"></p>
+  <p id="answer"></p>
+</body>
+</html>
